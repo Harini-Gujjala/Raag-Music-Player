@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Raag Music Player</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Pacifico&display=swap"
+    rel="stylesheet"
+  />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <div class="app">
+    <aside class="sidebar">
+      <div class="logo">Raag</div>
+
+      <nav class="side-nav">
+        <button class="side-link active" data-page="home"><span>⌂</span> Home</button>
+        <button class="side-link" data-page="search"><span>⌕</span> Search</button>
+        <button class="side-link" data-page="library"><span>♫</span> Your Library</button>
+      </nav>
+
+      <div class="playlist-area">
+        <p>YOUR PLAYLISTS</p>
+
+        <button class="create-playlist" id="createPlaylistBtn">＋ Create Playlist</button>
+        <button class="playlist-link" id="likedPlaylistBtn">♥ Liked Songs</button>
+        <button class="playlist-link" id="recentPlaylistBtn">◷ Recently Played</button>
+
+        <div id="customPlaylists"></div>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <header class="mobile-header">
+        <div class="logo">Raag</div>
+        <div class="mobile-actions">
+          <button id="mobileSearchBtn" aria-label="Search">⌕</button>
+          <button aria-label="Menu">☰</button>
+        </div>
+      </header>
+
+      <section class="page active-page" id="homePage">
+        <div class="welcome-section">
+          <p>WELCOME TO RAAG</p>
+          <h1>Music for every <span>mood.</span></h1>
+          <p class="sub-text">Search, discover, and enjoy your favourite songs.</p>
+          <button class="main-btn" id="exploreBtn">Explore Music →</button>
+        </div>
+
+        <section class="section">
+          <div class="section-title"><h2>Quick Picks</h2></div>
+
+          <div class="mood-grid">
+            <button class="mood-card" data-query="Telugu songs"><span>♫</span>Telugu Hits</button>
+            <button class="mood-card" data-query="Tamil songs"><span>✦</span>Tamil Hits</button>
+            <button class="mood-card" data-query="Hindi love songs"><span>♥</span>Love Songs</button>
+            <button class="mood-card" data-query="English pop songs"><span>◌</span>Pop Mix</button>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-title">
+            <h2>Recently Played</h2>
+            <button id="clearRecentBtn">Clear</button>
+          </div>
+          <div class="song-grid" id="recentSongs"></div>
+        </section>
+      </section>
+
+      <section class="page" id="searchPage">
+        <div class="page-heading"><h1>Search Music</h1></div>
+
+        <form class="search-bar" id="searchForm">
+          <input id="searchInput" type="text" placeholder="Search songs, artists, albums..." autocomplete="off" />
+          <button type="submit" aria-label="Search">⌕</button>
+        </form>
+
+        <p class="search-status" id="searchStatus">Search for your favourite music.</p>
+        <div class="song-results" id="songResults"></div>
+      </section>
+
+      <section class="page" id="libraryPage">
+        <div class="page-heading"><h1>Your Library</h1></div>
+
+        <section class="section library-section">
+          <h2>Liked Songs</h2>
+          <div class="song-results" id="likedSongs"></div>
+        </section>
+
+        <section class="section library-section">
+          <div class="section-title">
+            <h2>My Playlists</h2>
+            <button id="libraryCreatePlaylistBtn">+ Create</button>
+          </div>
+          <div class="playlist-grid" id="playlistGrid"></div>
+        </section>
+
+        <section class="section library-section">
+          <h2 id="queueHeading">Queue</h2>
+          <div class="song-results" id="queueSongs"></div>
+        </section>
+      </section>
+    </main>
+
+    <aside class="now-playing-panel">
+      <p class="panel-title">NOW PLAYING</p>
+      <img id="desktopCover" src="" alt="Album cover" />
+      <h3 id="desktopTitle">Choose a song</h3>
+      <p id="desktopArtist">Raag Music</p>
+      <button class="like-big-btn" id="desktopLikeBtn" aria-label="Like song">♡</button>
+    </aside>
+
+    <footer class="music-player">
+      <div class="song-details">
+        <img id="songCover" src="" alt="Song cover" />
+        <div>
+          <h4 id="songTitle">No song selected</h4>
+          <p id="songArtist">Search and play music</p>
+        </div>
+        <button class="small-like" id="likeBtn" aria-label="Like song">♡</button>
+      </div>
+
+      <div class="player-center">
+        <div class="player-controls">
+          <button id="shuffleBtn">⇄</button>
+          <button id="prevBtn">⏮</button>
+          <button id="playBtn">▶</button>
+          <button id="nextBtn">⏭</button>
+          <button id="repeatBtn">↻</button>
+        </div>
+
+        <div class="progress-area">
+          <span id="currentTime">0:00</span>
+          <input type="range" id="progressBar" value="0" min="0" max="100" />
+          <span id="duration">0:00</span>
+        </div>
+      </div>
+
+      <div class="volume-area">
+        <span>🔊</span>
+        <input id="volumeBar" type="range" min="0" max="1" step="0.01" value="0.7" />
+      </div>
+    </footer>
+
+    <nav class="mobile-nav">
+      <button class="mobile-nav-btn active" data-page="home"><span>♫</span>Home</button>
+      <button class="mobile-nav-btn" data-page="search"><span>⌕</span>Search</button>
+      <button class="mobile-nav-btn" data-page="library"><span>☷</span>Library</button>
+    </nav>
+
+    <!-- Create Playlist Popup -->
+    <div class="playlist-modal hidden" id="playlistModal">
+      <div class="playlist-modal-box">
+        <button class="close-modal" id="closePlaylistModal">×</button>
+        <h2>Create Playlist</h2>
+        <p>Give your playlist a name.</p>
+
+        <form id="playlistForm">
+          <input id="playlistNameInput" type="text" placeholder="Example: Late Night Songs" maxlength="30" required />
+          <button type="submit">Create Playlist</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Add Song Popup -->
+    <div class="playlist-modal hidden" id="addSongModal">
+      <div class="playlist-modal-box">
+        <button class="close-modal" id="closeAddSongModal">×</button>
+        <h2>Add to Playlist</h2>
+        <p id="addSongText">Choose a playlist for this song.</p>
+        <div class="playlist-choice-list" id="playlistChoiceList"></div>
+      </div>
+    </div>
+
+    <audio id="audioPlayer"></audio>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
