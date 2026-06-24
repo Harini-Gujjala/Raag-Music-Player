@@ -1172,3 +1172,57 @@
     width: 100%;
   }
 }
+/* FIX: remove the half-page background / desktop grid on mobile */
+@media (max-width: 768px) {
+  html,
+  body {
+    width: 100%;
+    min-width: 0;
+    margin: 0;
+    overflow-x: hidden;
+    background: #06283d !important;
+  }
+
+  .app,
+  .main-content,
+  .page,
+  .page.active-page {
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    box-sizing: border-box;
+    background: #06283d !important;
+  }
+
+  .app {
+    display: block !important;
+    grid-template-columns: none !important;
+  }
+
+  .main-content {
+    display: block !important;
+    grid-column: auto !important;
+  }
+
+  /* Remove any desktop pseudo-backgrounds if present */
+  .app::before,
+  .app::after,
+  .main-content::before,
+  .main-content::after {
+    display: none !important;
+  }
+
+  .sidebar,
+  .now-playing-panel {
+    display: none !important;
+  }
+
+  .mobile-header,
+  .music-player,
+  .mobile-nav {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box;
+  }
+}
