@@ -102,7 +102,7 @@ The project focuses on:
 
 ## 👩‍💻 Author
 
-**Harini Gujjala**
+**Harini G**
 
 * GitHub: [Harini-Gujjala](https://github.com/Harini-Gujjala)
 * Project: [Raag Music Player](https://github.com/Harini-Gujjala/Raag-Music-Player)
